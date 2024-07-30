@@ -1,0 +1,84 @@
+    .calendarWrapper {
+        display: flex;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .calendarNav {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 33%;
+        padding-right: 33%
+    }
+
+    .navButton {
+        display: inline-block;
+        width: 20%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .calendarWrapperDashboard {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .calendarTitle {
+        line-height: 60px;
+        /* line-height: 100%; */
+        margin-top: 0;
+        margin-bottom: 3%
+    }
+
+    .calendarBody {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        width: 80%;
+        height: 80%;
+
+    }
+
+    .dashBoardCalendarBody {
+        display: inline-grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-auto-rows: 1fr;
+        width: 100%;
+        height: 100%;
+        border: 2px solid gainsboro;
+    }
+
+    .calendarDay {
+        word-wrap: break-word;
+        margin-left: 1px;
+        margin-top: 1px;
+        outline: 1px solid;
+
+
+    }
+
+
+    .navBar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navBar button {
+        max-height: 4em;
+    }
+
+    .dayViewWrapper {
+        display: grid;
+        justify-content: center;
+    }
+
+    .eventMaker {
+        display: grid;
+        justify-content: center;
+    }

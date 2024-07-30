@@ -1,0 +1,162 @@
+body {
+    background-color: aliceblue;
+}
+
+@keyframes settingsSlide {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes settingsSlideOut {
+    0% {
+        transform: translateY(0%);
+
+    }
+
+    100% {
+        transform: translateY(-100%);
+        display: none;
+    }
+}
+
+.leftMenu {
+    display: grid;
+    grid-template-columns: 20%;
+    grid-template-rows: 30% 70%;
+}
+
+.dashboard {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: calc(100% - 5vw);
+}
+
+.logo {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    user-select: none;
+    width: 5vw;
+    height: 5vw
+}
+
+.navBar {
+    width: 100vw;
+    height: 5vw;
+    border: 2px black solid;
+
+}
+
+.taskWrapper {
+    display: grid;
+
+    transition: all .5s;
+
+    justify-self: left;
+    align-self: start;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    border: 0px;
+    border-style: solid;
+}
+
+
+/* .taskWrapper:hover {
+    transition: all .5s;
+    width: 20%;
+    height: 60%;
+} */
+
+
+.calendarWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    transition: all .5s;
+    justify-self: left;
+    align-self: end;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    border: 2px;
+    border-style: solid;
+
+}
+
+/* .calendarWrapper:hover {
+    transition: all .5s;
+    width: 22%;
+    height: 60%;
+} */
+
+
+.tasks {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.taskTitle {
+    margin-bottom: 10px;
+
+}
+
+.login {
+    width: 80%;
+    height: 10%;
+    margin-top: 1vw;
+}
+
+.settingsButton {
+
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    user-select: none;
+    width: 5vw;
+    height: 5vw;
+
+}
+
+.settingsButton img {
+    position: absolute;
+
+}
+
+.settings {
+    animation: .6s ease-out 0s 1 settingsSlide;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    height: 40vw;
+    margin-left: 40vw;
+    background-color: gray;
+    border: 3px solid black;
+}
+
+.settingsHide {
+    animation: .3s ease-out 0s 1 settingsSlideOut;
+    position: absolute;
+
+
+
+    justify-content: center;
+    transform: translateY(-100%);
+    width: 20vw;
+    height: 40vw;
+    margin-left: 40vw;
+    background-color: gray;
+    border: 3px solid black;
+}

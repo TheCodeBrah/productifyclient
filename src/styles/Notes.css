@@ -1,0 +1,107 @@
+/* * {
+    font-family: monospace;
+} */
+
+.notes {
+    text-align: center;
+}
+
+.notes-wrapper {
+    display: flex;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    width: 1000px;
+    height: 700px;
+    margin: auto;
+    flex-direction: row;
+    justify-content: space-evenly;
+    -ms-flex-align: start;
+    flex-wrap: wrap;
+
+}
+
+.note {
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    width: 250px;
+    margin-top: 3vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-bottom: 3vh;
+    height: 300px;
+}
+
+.new-note-btn {
+
+    margin: auto;
+    margin-top: 5vw;
+    flex-wrap: wrap;
+}
+
+.note-creator {
+    display: flex;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    width: 1000px;
+    height: 700px;
+    margin: auto;
+
+
+}
+
+.text-editor {
+    width: 100%;
+    height: calc(100% - 42px);
+}
+
+.title-setter {
+    width: 16vw;
+    height: 8vw;
+
+}
+
+.title-writer {
+    display: flex;
+    justify-content: center;
+}
+
+.new-note {
+    position: relative;
+}
+
+.delete-note {
+
+    width: 32px;
+    height: 32px;
+    align-items: flex-end;
+
+}
+
+.hide-toolbar {
+    display: flex;
+    height: 0px;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: all .5s;
+}
+
+.toolbar-wrapper {
+    height: 32px;
+    display: flex;
+    justify-content: flex-end;
+    opacity: 1;
+    transition: all .5s;
+}
+
+.note-title {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.disabled {
+    display: none;
+}
