@@ -44,8 +44,9 @@ function Dashboard() {
   const [showSettings, setShowSettings] = useState(undefined)
   const [calendarStyle, setCalendarStyle] = useState("calendar-wrapper")
   const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [year, setYear] = useState(2024)
-  const [month ,setMonth] = useState(4)
+  const getDate = new Date()
+  const [year, setYear] = useState(getDate.getFullYear())
+  const [month, setMonth] = useState(getDate.getMonth() + 1)
   // axios.defaults.withCredentials = true
   const api = axios.create({
     baseURL: "http://localhost:5000/api",
@@ -86,6 +87,7 @@ let taskMap
    
     getTasks()
     console.log("pageLoaded")
+    //check if google authentication is still valid
     const checkGoogleAuthStatus = async () => {
       const at = await getCookie("accesstoken")
       console.log(at)
@@ -136,7 +138,7 @@ let taskMap
  
     setYear(getyear)
     setMonth(getmonth)
-    console.log(`${daysInMonth(year, month)}, ${month}, ${year}`)
+    console.log(`years n shi: ${daysInMonth(year, month)}, ${month}, ${year}`)
    
   }
   function redirectToCalendar() {

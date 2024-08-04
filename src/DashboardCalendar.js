@@ -26,7 +26,7 @@ function DashboardCalendar({getCookie, redirect, month, year, setMonth, setYear}
   useEffect(() => {
     const date = new Date()
     setCurYear(cy => cy = date.getFullYear())
-    setCurMonth(cy => cy = date.getMonth())
+    setCurMonth(cy => cy = date.getMonth() + 1)
 
     loadCalendar(curYear)
 

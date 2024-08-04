@@ -88,8 +88,8 @@ body {
     width: 100%;
     height: 100%;
     justify-items: center;
-    border: 2px;
-    border-style: solid;
+    outline: 2px solid rgb(0, 33, 77);
+    margin-left: 2px;
 
 }
 
