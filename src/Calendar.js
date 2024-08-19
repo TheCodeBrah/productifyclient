@@ -175,60 +175,74 @@ async function getCalendarEvents(cookie, days, month, year, newDayList) {
   console.log(eventBody)
  }
  
- async function deleteEvent(id, dayViewMap){
+ async function deleteEvent(day, id, dayViewMap){
 
-const fixedList =  dayViewMap.filter(day => day.key !== id)
+const fixedList =  dayViewMap.filter(day => day?.key !== id)
 console.log(fixedList)
 console.log(dayViewMap)
 setDayView(fixedList)
 
-const newDays = days.filter(day => day.every(day => day.gapi_id !== id))
-newDays.
-setDays(newDays)
-console.log(newDays)
+
+
+const newDay = days.filter(days => days[0].key === day)
+const newDayFiltered = newDay[0].filter(d => d.gapi_id !== id)
+// setDays(newDays)
+console.log(id)
+console.log(newDay)
+console.log(newDayFiltered)
+console.log(days)
+const daysFiltered = days.filter(d => d[0].key !== day)
+console.log(daysFiltered)
+const daysCombined = [...daysFiltered, newDayFiltered]
+console.log(daysCombined)
+const orderedDays = daysCombined.sort((a, b) => a[0].key - b[0].key)
+        console.log(orderedDays)
+        setDays(days => days = orderedDays)
+  setDays(orderedDays)
 let cookie = await getCookie("accesstoken")
  //TO DO: filter out the delted ID from the dayView map
 
 api.post('/calendar/delete', {id:id, at:cookie}).then(() => {loadCalendar()})
-// setDayView(dayView.filter(day => day.key !== id))
+
 
 }
 
  
  //adds Events from Gapi to frontend calendar
- function setEvents(dates, newDayList){
-    for (let i = 0; i in dates; i++){
-      console.log(dates)
+ function setEvents(events, newDayList){
+    for (let i = 0; i in events; i++){
+      console.log(events)
       let bd = ""
-        if (dates[i].start.dateTime){
-         bd = dates[i].start.dateTime.split(/[- , T]+/)}
-        if(dates[i].start.date){
-           bd = dates[i].start.date.split("-")
+        if (events[i].start.dateTime){
+         bd = events[i].start.dateTime.split(/[- , T]+/)}
+        if(events[i].start.date){
+           bd = events[i].start.date.split("-")
         }
-        console.log(dates[i].start.dateTime)
+        console.log(events[i].start.dateTime)
         const bdYear = bd[0]
         const bdMonth = bd[1]
         const bdDay = bd[2]
         
         console.log(newDayList)
 
-        const filteredDay = newDayList.filter((d) => d[0].id === parseInt(bdDay))
+        const filteredDay = newDayList.filter((d) => d[0].key === parseInt(bdDay))
         let dayInsert
         console.log(filteredDay)
-        if (!filteredDay[0][0].summary){
-          dayInsert = 0
-        }else{
-        dayInsert = filteredDay.length
-      }
-        console.log(filteredDay)
+       
+        dayInsert = filteredDay[0].length
+      
+        console.log(filteredDay[0])
         filteredDay[0][dayInsert] = {}
-        filteredDay[0][dayInsert].summary = dates[i]?.summary
-        filteredDay[0][dayInsert].description = dates[i]?.description
-        filteredDay[0][dayInsert].gapi_id = dates[i]?.id
+        filteredDay[0][dayInsert].summary = events[i]?.summary
+        filteredDay[0][dayInsert].description = events[i]?.description
+        filteredDay[0][dayInsert].gapi_id = events[i]?.id
         filteredDay[0][dayInsert].id = parseInt(bdDay)
-        const filteredList = newDayList.filter((d) => d[0].id !== parseInt(bdDay))
+        console.log(filteredDay)
+        const filteredList = newDayList.filter((d) => d[0].key !== parseInt(bdDay))
         const finalList = [...filteredList, ...filteredDay]
-        const orderedFinalList = finalList.sort((a, b) => a[0].id - b[0].id)
+        console.log(finalList)
+        const orderedFinalList = finalList.sort((a, b) => a[0].key - b[0].key)
+        console.log(orderedFinalList)
         setDays(days => days = orderedFinalList)
     }
  }
@@ -264,7 +278,7 @@ api.post('/calendar/delete', {id:id, at:cookie}).then(() => {loadCalendar()})
     let newDayList = []
    //refills calendar with new days
       for ( let i = 1 ; i <= dim; i++){
-          newDayList = [...newDayList, []]
+          newDayList = [...newDayList, [{key: i}]]
       }
       setDays(newDayList)
       getCalendarEvents('accesstoken', dim, month, year, newDayList)
@@ -273,7 +287,7 @@ api.post('/calendar/delete', {id:id, at:cookie}).then(() => {loadCalendar()})
  }
  //maps all calendar days to a variable to be shown on monthly screen
 
- const calendarDays = days.map((day, index) => { 
+ const calendarDays = days.map((day) => { 
   let newDay
   if (day[0]){
     newDay = day.map((d) =>  {
@@ -288,33 +302,33 @@ api.post('/calendar/delete', {id:id, at:cookie}).then(() => {loadCalendar()})
 
 
  <div 
-  key={day[0].id} 
+  key={day[0].key} 
   className={styles.calendarDay} 
   onClick={async() => {
     
-    if(day[0].id <= 9 && curMonth <= 9) {
+    if(day[0].key <= 9 && curMonth <= 9) {
      
-      setDayViewProps({summary:day[0].summary, id:`0${day[0].id}`, description:day[0].description, gapi_id:day[0].gapi_id, month:`0${curMonth}`})
-    }else if(day[0].id <= 9 && curMonth > 9) {
+      setDayViewProps({summary:undefined, id:`0${day[0].key}`, description:undefined, gapi_id:undefined, month:`0${curMonth}`})
+    }else if(day[0].key <= 9 && curMonth > 9) {
      
-      setDayViewProps({summary:day[0].summary, id:`0${day[0].id}`, description:day[0].description, gapi_id:day[0].gapi_id, month:`${curMonth}`})
-    }else if(day[0].id > 9 && curMonth <= 9) {
+      setDayViewProps({summary:undefined, id:`0${day[0].key}`, description:undefined, gapi_id:undefined, month:`${curMonth}`})
+    }else if(day[0].key > 9 && curMonth <= 9) {
       
-      setDayViewProps({summary:day[0].summary, id:`${day[0].id}`, description:day[0].description, gapi_id:day[0].gapi_id, month:`0${curMonth}`})
+      setDayViewProps({summary:undefined, id:`${day[0].key}`, description:undefined, gapi_id:undefined, month:`0${curMonth}`})
     }else{
    
-      setDayViewProps({summary:day[0].summary, id:day[0].id, description:day[0].description, gapi_id:day[0].gapi_id, month:`${curMonth}`})
+      setDayViewProps({summary:undefined, id:day[0].key, description:undefined, gapi_id:undefined, month:`${curMonth}`})
     }
     
     
     setView("Day")
   console.log(day)
-    createDayViewMap(day[0].id)
+    createDayViewMap(day[0].key)
    
     
   }}>
      
- <p style={{marginTop:0}}>{day[0].id}</p> 
+ <p style={{marginTop:0}}>{day[0].key}</p> 
 
 {newDay}
   </div>)})
@@ -325,15 +339,19 @@ api.post('/calendar/delete', {id:id, at:cookie}).then(() => {loadCalendar()})
     
     //api.post('/calendar/delete', {id:dayViewProps.gapi_id})}
     console.log(days[0][0])
-    const filtered = days.filter(d => d[0].id === day)
+    const filtered = days.filter(d => d[0].key === day)
     console.log(filtered)
-    dayViewMap = filtered[0].map((d) => {
-      console.log(d.gapi_id)
-      return(<div key={d.gapi_id}>
-        <p >{d.summary}</p> <button onClick={() => {deleteEvent(d.gapi_id, dayViewMap)}}>Delete</button></div>
+     if(filtered.length > 0){
+    dayViewMap = filtered[0].map((d, index) => {
+      console.log(d?.gapi_id)
+      if(index === 0){
+        return undefined
+      }
+      return(<div key={d.gapi_id} className={styles.eventWrapper}>
+        <p className={styles.eventSummary}>{d.summary}</p> <p className={styles.eventDescription}>{d.description}</p> <button onClick={() => {deleteEvent(filtered[0][0].key, d.gapi_id, dayViewMap)}}>Delete</button></div>
         )
         
-    })
+    })}
     console.log(dayViewMap)
     setDayView(dayViewMap)
   }
@@ -375,8 +393,11 @@ api.post('/calendar/delete', {id:id, at:cookie}).then(() => {loadCalendar()})
      </>}
      {view === "EventMaker" &&  
      <div className={styles.eventMaker}>
+      
+<input placeholder='Input Event Summary' onChange={(e) => {setEventMaker(em => em = {timeMax:em.timeMax, timeMin:em.timeMin, summary:e.target.value, description:em.description, })}}></input>
+
       <input placeholder='Input Event Description' onChange={(e) => {setEventMaker(em => em = {timeMax:em.timeMax, timeMin:em.timeMin, summary:em.summary, description:e.target.value, })}}></input>
-      <input placeholder='Input Event Summary' onChange={(e) => {setEventMaker(em => em = {timeMax:em.timeMax, timeMin:em.timeMin, summary:e.target.value, description:em.description, })}}></input>
+      
       <p>End Time</p>
       <input type="datetime-local" defaultValue={`${curYear}-${dayViewProps.month}-${dayViewProps.id}T00:00`} onChange={(e) => {setEventMaker(em => em = {timeMax:e.target.value, timeMin:em.timeMin, summary:em.summary, description:em.description, })}}></input>
       <p>Start Time</p>
