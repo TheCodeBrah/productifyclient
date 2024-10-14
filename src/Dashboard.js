@@ -9,6 +9,7 @@ import googleButton from './assets/btn_google_signin_dark_pressed_web.png'
 import settingsBtn from './assets/settings-cog-gray-outline.png'
 import Login from './Login'
 
+import TasksBeta from './TasksBeta';
 function navigate(url) {
   window.location.href = url
 
@@ -37,11 +38,11 @@ async function getCookie(cname){
   }
 }
 
-function Dashboard() {
-  const [isDashBoard, setIsDashBoard] = useState(true)
-  const [page, setPage] = useState()
+function Dashboard({setPage, page, isDashBoard, setIsDashBoard, showSettings, setShowSettings}) {
+ 
+  
   const [tasks, setTasks] = useState(undefined)
-  const [showSettings, setShowSettings] = useState(undefined)
+  
   const [calendarStyle, setCalendarStyle] = useState("calendar-wrapper")
   const [isAuthenticated, setIsAuthenticated] = useState(true)
   const getDate = new Date()
@@ -138,7 +139,7 @@ let taskMap
  
     setYear(getyear)
     setMonth(getmonth)
-    console.log(`years n shi: ${daysInMonth(year, month)}, ${month}, ${year}`)
+   
    
   }
   function redirectToCalendar() {
@@ -161,14 +162,59 @@ let taskMap
        
        </div>}
    {/* <button className='login' onClick={() => {auth()}}><img src={googleButton} alt='googleButton'></img></button> */}
-    <div className={styles.navBar}>
+    {/* <div className={styles.navBar}>
      <img src={logo} alt='logo' onClick={() => {setIsDashBoard(true)}} className={styles.logo} draggable="false"></img>
-    <img className={styles.settingsButton} onClick={() => {setShowSettings(!showSettings); console.log(showSettings)}} alt="settingsButton"  src={settingsBtn}></img>
-    </div>
+    <img className={styles.settingsButton} onClick={() => {setShowSettings(!showSettings); console.log(showSettings)}} alt="settingsButton"  src={settingsBtn}></img> */}
+    {/* </div> */}
     {/* Dashboard Code */}
     
     {(isDashBoard && isAuthenticated) &&
-    <div className={styles.dashboard}>
+
+      
+      <div className={styles.dashboardContainer}>
+            <div className={styles.sidebarContainer}>
+            
+                <div className={styles.taskContainer} onClick={()=>{setIsDashBoard(false); setPage(<TasksBeta/>)}}>
+                <div className={styles.tasks} >
+                  <h1 className={styles.taskTitle}>Tasks</h1>
+                  {taskMap}
+                  </div>
+        
+                </div>
+
+
+                <DashboardCalendar setPage={setPage} getCookie={getCookie} redirect={redirectToCalendar} month={month} year={year} setMonth={setMonth} setYear={setYear}></DashboardCalendar>
+            </div>
+        
+        <div className={styles.mainDashContainer}>
+            <div className={styles.dashWindowContainer}>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            </div>
+            <div className={styles.dashWindowContainer}>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            </div>
+            <div className={styles.dashWindowContainer}>
+
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            </div>
+            <div className={styles.dashWindowContainer}>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            <div className={styles.dashWindowPane}></div>
+            </div>
+        </div>
+        </div>
+    /* <div className={styles.dashboard}>
       <div className={styles.leftMenu}>
         <div className={styles.taskWrapper} onClick={() => { setIsDashBoard(false); setPage(<Task/>)}}>
           <div className={styles.tasks}>
@@ -188,7 +234,7 @@ let taskMap
               }
 
       </div>
-    </div>
+    </div> */ 
     }
     {/* shows the page that you click on after leaving the dashboard */}
     {(!isDashBoard && isAuthenticated)  && <> {page} </>}

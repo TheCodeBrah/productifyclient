@@ -30,13 +30,7 @@ body {
     grid-template-rows: 30% 70%;
 }
 
-.dashboard {
-    display: grid;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: calc(100% - 5vw);
-}
+
 
 .logo {
     position: absolute;
@@ -50,23 +44,11 @@ body {
 .navBar {
     width: 100vw;
     height: 5vw;
-    border: 2px black solid;
+    border: 2px #b4d4e4 solid;
 
 }
 
-.taskWrapper {
-    display: grid;
 
-    transition: all .5s;
-
-    justify-self: left;
-    align-self: start;
-    width: 100%;
-    height: 100%;
-    justify-items: center;
-    border: 0px;
-    border-style: solid;
-}
 
 
 /* .taskWrapper:hover {
@@ -76,22 +58,7 @@ body {
 } */
 
 
-.calendarWrapper {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    transition: all .5s;
-    justify-self: left;
-    align-self: end;
-    width: 100%;
-    height: 100%;
-    justify-items: center;
-    outline: 2px solid rgb(0, 33, 77);
-    margin-left: 2px;
 
-}
 
 /* .calendarWrapper:hover {
     transition: all .5s;
@@ -143,7 +110,7 @@ body {
     height: 40vw;
     margin-left: 40vw;
     background-color: gray;
-    border: 3px solid black;
+    border: 3px solid #b4d4e4;
 }
 
 .settingsHide {
@@ -159,4 +126,50 @@ body {
     margin-left: 40vw;
     background-color: gray;
     border: 3px solid black;
+}
+.dashboardContainer{
+    display: flex;
+    width: 100%;
+    height:100%
+}
+.container{
+    width: 100%;
+    height: 100%;
+    
+}
+.sidebarContainer{
+    display: grid;
+    grid-template-rows: 30% 70%;
+    width: 30%;
+    height: 100%;
+    outline: 1px solid black;
+}
+.taskContainer{
+    display: flex;
+}
+.mainDashContainer{
+    
+    
+    display: flex;
+    width: 70%;
+    height: 100%;
+    
+    justify-content: space-around;
+    row-gap: 4%;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.dashWindowContainer{
+    display: grid;
+    width: 35%;
+    height: 45%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    outline: 1px solid #557586;
+
+}
+.dashWindowPane{
+    background-image: radial-gradient(circle, #b1c9d4 10%,#d7f2ff  100%);
+    outline: 1px solid #557586;
 }

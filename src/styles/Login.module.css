@@ -1,14 +1,14 @@
 .loginWrapper {
     display: grid;
     justify-content: center;
-
     flex-direction: column
 }
 
 .loginHeader {}
 
 .loginButton {
-    justify-self: center;
-
+    width: fit-content;
+justify-self: center;
+    height: fit-content;
 
 }

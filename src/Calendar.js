@@ -163,6 +163,7 @@ async function getCalendarEvents(cookie, days, month, year, newDayList) {
           date: `${curYear}-${curMonth}-${dayViewProps.id}`,
           timeZone: 'America/Los_Angeles'
         },     
+        
 }
     }
   console.log(ep)
@@ -364,7 +365,7 @@ api.post('/calendar/delete', {id:id, at:cookie}).then(() => {loadCalendar()})
 
 
   {view === 'Month' && 
-      <>
+      <div>
      <div className={styles.calendarNav}><button className={styles.navButton} onClick={() => {setCurMonth(curMonth-1); loadCalendar("backward") }}> left button </button><h1>{showMonth} {curYear} </h1><button className={styles.navButton} onClick={() => {setCurMonth(curMonth+1); loadCalendar("forward")}}>right button</button> </div>
     <div className={styles.calendarWrapper}>
    
@@ -374,7 +375,7 @@ api.post('/calendar/delete', {id:id, at:cookie}).then(() => {loadCalendar()})
     </div>
   
 
-     </>}
+     </div>}
      {view === "Day" && 
      <>
      <div className={styles.dayViewWrapper}>

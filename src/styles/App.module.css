@@ -7,13 +7,14 @@ h1 {
 }
 
 .App {
-  max-width: 100vw;
-  max-height: 100vh;
+  display:grid;
   width: 100vw;
   height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: aliceblue;
+  outline: 1px solid black;
+
+  grid-template-rows: 10% 90%;
+  grid-template-columns: 1fr;
+  background-color: #c7e0e0;
 }
 
 .button1 {
