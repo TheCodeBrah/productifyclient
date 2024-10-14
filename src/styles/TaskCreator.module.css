@@ -1,0 +1,20 @@
+
+.taskCreator {
+    position: absolute;
+    transition: all 0.5s;
+    bottom: 25%;
+    left:25%;
+    width: 50%;
+    height: 50%;
+    outline: 1px black solid;
+}
+.taskCreatorHidden {
+    position: absolute;
+    transition: all 0.5s;
+    opacity: 0%;
+    bottom: 25%;
+    left:25%;
+    width: 0%;
+    height: 0%;
+    outline: 1px black solid;
+}

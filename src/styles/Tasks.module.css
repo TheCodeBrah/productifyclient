@@ -1,0 +1,29 @@
+.tasksContent{
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    max-height: 100%;
+    padding-bottom: 1px;
+}
+.tasksContainer{
+
+}
+.task{
+    display: flex;
+    transition: all .5s;
+    width: 4vw;
+    height: 4vw;
+    outline: 1px black solid;
+    justify-content: center;
+}
+.task:hover{
+    transition: all .5s;
+    width: 8vw;
+    height: 8vw;
+}
+.createTaskBtn{
+    
+    width: 15%;
+    height:15%;
+  
+}

@@ -1,0 +1,16 @@
+.taskbarContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: #d7f2ff;
+    outline: 1px solid #b4d4e4;
+}
+.homeButton{
+    width: 10%;
+    height: 100%;
+}
+.settingsButton{
+    width: 10%;
+    height: 100%;
+}
